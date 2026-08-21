@@ -11,9 +11,10 @@ def test_get_cipher_return_instance():
     assert isinstance(get_cipher("caesar"), CaesarCipher)
 
 def test_list_ciphers_metadata_shape():
-    entry = next(item for item in list_ciphers() if item["id"] == "caesar")
-    assert set(entry) == {"id", "name", "description", "key_hint"}
-    assert entry["name"] == "Caesar cipher"
+    for entry in list_ciphers():
+        assert set(entry) == {"id", "name", "description", "key_hint"}, entry["id"]
+        for field in ("name", "description", "key_hint"):
+            assert entry[field], f"empty {field} in {entry['id']}"
 
 def test_get_unknown_cipher():
     with pytest.raises(UnsupportedCipherError):

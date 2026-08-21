@@ -1,8 +1,9 @@
-from .caesar import CaesarCipher
 from .exceptions import UnsupportedCipherError
 
-_CIPHERS = {cls.cipher_id: cls for cls in (CaesarCipher, )}
-print("файл регистров импортирован")
+from .caesar import CaesarCipher
+from .vigenere import VigenereCipher
+
+_CIPHERS = {cls.cipher_id: cls for cls in (CaesarCipher, VigenereCipher)}
 
 def get_cipher(cipher_id):
     try:
