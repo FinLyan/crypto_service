@@ -2,8 +2,9 @@ from .exceptions import UnsupportedCipherError
 
 from .caesar import CaesarCipher
 from .vigenere import VigenereCipher
+from .XOR_cipher import XorCipher
 
-_CIPHERS = {cls.cipher_id: cls for cls in (CaesarCipher, VigenereCipher)}
+_CIPHERS = {cls.cipher_id: cls for cls in (CaesarCipher, VigenereCipher, XorCipher)}
 
 def get_cipher(cipher_id):
     try:
