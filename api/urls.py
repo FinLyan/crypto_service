@@ -5,4 +5,5 @@ urlpatterns = [
     path("ciphers/", views.ciphers_list),
     path("encrypt/", views.encrypt),
     path("decrypt/", views.decrypt),
+    path("history/", views.history),
 ]

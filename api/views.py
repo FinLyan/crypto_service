@@ -4,6 +4,7 @@ from crypto_core.registry import list_ciphers, get_cipher
 from rest_framework import status
 from api.models import OperationRecord
 from crypto_core.exceptions import DecryptionError, InvalidKeyError, InvalidTextError, UnsupportedCipherError
+from api.serializers import OperationRecordSerializer
 
 def _perform_operation(request, operation):
     missing = [f for f in ("cipher", "key", "text") if not isinstance(request.data.get(f), str)]
@@ -34,6 +35,11 @@ def _perform_operation(request, operation):
 @api_view(["GET"])
 def ciphers_list(request):
     return Response(list_ciphers())
+
+@api_view(["GET"])
+def history(request):
+    records = OperationRecord.objects.all()
+    return Response(OperationRecordSerializer(records, many=True).data)
 
 @api_view(["POST"])
 def encrypt(request):
