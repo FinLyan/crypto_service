@@ -3,8 +3,9 @@ from .exceptions import UnsupportedCipherError
 from .caesar import CaesarCipher
 from .vigenere import VigenereCipher
 from .XOR_cipher import XorCipher
+from .fernet import FernetCipher
 
-_CIPHERS = {cls.cipher_id: cls for cls in (CaesarCipher, VigenereCipher, XorCipher)}
+_CIPHERS = {cls.cipher_id: cls for cls in (CaesarCipher, VigenereCipher, XorCipher, FernetCipher)}
 
 def get_cipher(cipher_id):
     try:
